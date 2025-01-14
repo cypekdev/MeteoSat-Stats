@@ -55,12 +55,9 @@
                             </Border.Effect>
                         </Border>-->
 
-                        <Border x:Name="border" CornerRadius="6" 
-                     BorderBrush="Gray" BorderThickness="0" Padding="5"  Background="WhiteSmoke" Margin="3 4">
-                            <Border.Effect>
-                                <DropShadowEffect  Direction="270" ShadowDepth="1" BlurRadius="4" Color="black" Opacity="0.4" ></DropShadowEffect>
-                            </Border.Effect>
-                            
+                        <Border x:Name="border" CornerRadius="6" BorderBrush="#2666"
+                                BorderThickness="1" Padding="5"  Background="WhiteSmoke" Margin="3 4 3 0">
+
                             <ContentPresenter 
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
@@ -112,7 +109,7 @@
                         </Border>-->
 
                         <Border x:Name="border" CornerRadius="6 6 0 0" BorderBrush="#2666" BorderThickness="1 1 1 0" 
-                                Padding="8 5"  Background="White" Margin="3 4 3 0">
+                                Padding="5"  Background="White" Margin="3 4 3 0">
 
 
 
