@@ -30,18 +30,14 @@
 
 
         <Border BorderThickness="0 0 0 0" BorderBrush="#2000"   >
-            <StackPanel Orientation="Horizontal"   HorizontalAlignment="Left" x:Name="tab" Background="White" Height="32"   >
-                <!--<Button  Content="test test "   Foreground="Black" Style="{StaticResource ResourceKey=RoundCornerRightSelected}" ></Button>-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" x:Name="tabs" Background="White" Height="32"   >
+                <!--<Button  Content="test test "   Foreground="Black" Style="{StaticResource ResourceKey=RoundCornerRightSe/?lected}" ></Button>-->
             </StackPanel>
         </Border>
 
         <Border Grid.Row="1" BorderThickness="0 0 0 0" BorderBrush="#3000" CornerRadius="4"   >
-    
-
             <Grid  x:Name="grid" >
             </Grid>
-
-
         </Border>
   
         <!--<Label Grid.RowSpan="2" Panel.ZIndex="99999" x:Name="tabStatus" Content="Label" HorizontalAlignment="Left" Margin="62,35,0,0" VerticalAlignment="Center" FontSize="36"/>-->

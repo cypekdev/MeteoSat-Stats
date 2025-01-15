@@ -422,7 +422,7 @@ namespace NetDock
         {
             if (Item == null)
             {
-                tab.Visibility = Visibility.Collapsed;
+                tabs.Visibility = Visibility.Collapsed;
                 tabRowDef.Height = new GridLength(0, GridUnitType.Pixel);
             }
             else
@@ -431,8 +431,8 @@ namespace NetDock
                 {
                     tabRowDef.Height = new GridLength(32, GridUnitType.Pixel);
                     tabRowDef.Height = GridLength.Auto;
-                    tab.Visibility = Visibility.Visible;
-                    tab.Children.Clear();
+                    tabs.Visibility = Visibility.Visible;
+                    tabs.Children.Clear();
                     foreach (var item in Stack)
                     {
                         var btn = new Button();
@@ -441,12 +441,15 @@ namespace NetDock
 
                         btn.Style = Item == item ? selected_style : style;
 
-                        var grid = new Grid();
+                        var buttonGrid = new Grid();
                         var iconCol = new ColumnDefinition();
                         var nameCol = new ColumnDefinition();
-                        
-                        grid.ColumnDefinitions.Add(iconCol);
-                        grid.ColumnDefinitions.Add(nameCol);
+                        var closeBtnCol = new ColumnDefinition();
+
+
+                        buttonGrid.ColumnDefinitions.Add(iconCol);
+                        buttonGrid.ColumnDefinitions.Add(nameCol);
+                        buttonGrid.ColumnDefinitions.Add(closeBtnCol);
 
                         var tabIcon = new System.Windows.Controls.Image();
                         tabIcon.Width = 16;
@@ -458,16 +461,21 @@ namespace NetDock
                         tabName.Margin = new Thickness(5, 0, 0, 0);
                         tabName.Text = item.TabName;
                         Grid.SetColumn(tabName, 1);
-                        
-                        grid.Children.Add(tabIcon);
-                        grid.Children.Add(tabName);
 
-                        btn.Content = grid;
+                        var closeTabBtn = new Button();
+                        closeTabBtn.Margin = new Thickness(5, 0, 0, 0);
+                        Grid.SetColumn(closeTabBtn, 2);
 
-                        tab.Children.Add(btn);
+                        buttonGrid.Children.Add(tabIcon);
+                        buttonGrid.Children.Add(tabName);
+                        //buttonGrid.Children.Add(closeTabBtn);
+
+                        btn.Content = buttonGrid;
+
+                        tabs.Children.Add(btn);
                         btn.Click += (s, e) =>
                         {
-                            foreach (Button button in tab.Children)
+                            foreach (Button button in tabs.Children)
                                 button.Style = button == btn ? selected_style : button.Style = style;
 
                             var control = item.GetDockItem();
@@ -550,7 +558,7 @@ namespace NetDock
                 }
                 else
                 {
-                    tab.Children.Clear();
+                    tabs.Children.Clear();
                     tabRowDef.Height = new GridLength(0, GridUnitType.Pixel);
                 }
             }

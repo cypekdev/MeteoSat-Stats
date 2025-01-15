@@ -75,7 +75,7 @@ namespace NetDock.Controls
         DoubleAnimation growAnimationL;
 
         TaskCompletionSource tsc;
-        public Task BeginTransition(double x, double y,double w, double h)
+        public Task BeginTransition(double x, double y, double w, double h)
         {
             tsc = new TaskCompletionSource();
 
