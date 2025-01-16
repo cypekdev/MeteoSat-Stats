@@ -435,6 +435,12 @@ namespace NetDock
                     tabs.Children.Clear();
                     foreach (var item in Stack)
                     {
+                        var tab = new DockTab()
+                        {
+                            
+                        };
+
+
                         var btn = new Button();
                         var style = this.FindResource("TabItem") as Style;
                         var selected_style = this.FindResource("TabItemSelected") as Style;
@@ -494,10 +500,11 @@ namespace NetDock
                                 var pos = System.Windows.Forms.Control.MousePosition;
                                 begin = btn.PointFromScreen(new Point(pos.X, pos.Y));
                                 down = true;
-                            } else if (e.MiddleButton == MouseButtonState.Pressed)
-                            {
-                                Remove(item);
-                            }
+                            } 
+                            //else if (e.MiddleButton == MouseButtonState.Pressed)
+                            //{
+                            //    Remove(item);
+                            //}
                             //Debug.WriteLine($"DOWNAD {downTabName} -> {btn.Content} ");
                         };
                         btn.MouseDoubleClick += (s, e) =>
