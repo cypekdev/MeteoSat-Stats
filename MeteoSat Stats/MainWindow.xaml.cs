@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,6 +24,8 @@ namespace MeteoSat_Stats
 
             var consoleIcon = new BitmapImage(new Uri("pack://application:,,,/console.png", UriKind.Absolute));
             var lineChartIcon = new BitmapImage(new Uri("pack://application:,,,/line_chart.png", UriKind.Absolute));
+
+
 
             dockSurface.Add(new DockItem(new Console()) { TabName = "Console", TabIcon = consoleIcon });
             dockSurface.Add(new DockItem(new LineChart()) { TabName = "Chart", TabIcon = lineChartIcon }); 

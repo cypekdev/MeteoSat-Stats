@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +21,31 @@ namespace MeteoSat_Stats
     /// </summary>
     public partial class Console : UserControl
     {
-        public string ConsoleOutput { get; set; }
+        private ObservableCollection<DataPacket> Data { get; set; }
+
         public Console()
         {
             InitializeComponent();
             DataContext = this;
 
-            ConsoleOutput = "19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebrane \n19:14:30 nowe dane są odebran \n19:14:30 nowe dane są odebran \n";
+            Data = ((App)Application.Current).Packets;
 
+            Data.CollectionChanged += CollectionChanged;
+        }
+
+        private void CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            string textContent = "";
+            foreach (var packet in Data)
+            {
+                textContent += (packet.ToString() + '\n');
+            }
+            ConsoleOutput.Text = textContent;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Data.Add(new DataPacket(1,1,1,1,1,1,1,1,1,1,1,1,1,1));
         }
     }
 }
