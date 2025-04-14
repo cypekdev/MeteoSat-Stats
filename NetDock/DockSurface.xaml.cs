@@ -469,12 +469,19 @@ namespace NetDock
                         Grid.SetColumn(tabName, 1);
 
                         var closeTabBtn = new Button();
-                        closeTabBtn.Margin = new Thickness(5, 0, 0, 0);
+                        closeTabBtn.Margin = new Thickness(0);
                         Grid.SetColumn(closeTabBtn, 2);
 
                         buttonGrid.Children.Add(tabIcon);
                         buttonGrid.Children.Add(tabName);
-                        //buttonGrid.Children.Add(closeTabBtn);
+                        buttonGrid.Children.Add(closeTabBtn);
+
+                        closeTabBtn.Style = this.FindResource("TabItemCloseBTN") as Style;
+
+                        closeTabBtn.Click += (s, e) =>
+                        {
+                            Remove(item);
+                        };
 
                         btn.Content = buttonGrid;
 
