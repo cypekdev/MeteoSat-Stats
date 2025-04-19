@@ -1,51 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
-using System.Collections.ObjectModel;
+using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace MeteoSat_Stats
 {
-    class UsbService
+
+    public class UsbService
     {
-        private SerialPort port;
-        private ObservableCollection<DataPacket> Data { get; set; }
+        private readonly SerialPort port;
+        private readonly ObservableCollection<DataPacket> collection;
+        private readonly Dispatcher dispatcher;
 
-        public UsbService(ObservableCollection<DataPacket> data)
+        public UsbService(ObservableCollection<DataPacket> dataCollection, Dispatcher dispatcher)
         {
-            port = new SerialPort();
-            port.DataReceived += PortDataReceived;
-            Data = new ObservableCollection<DataPacket>();
+            this.collection = dataCollection;
+            this.dispatcher = dispatcher;
+
+            port = new SerialPort
+            {
+                PortName = "COM14", // Najwyższa Istoto, zmień jeśli trzeba
+                BaudRate = 15200,
+                Parity = Parity.None,
+                StopBits = StopBits.One,
+                DataBits = 8,
+                Handshake = Handshake.None,
+                ReadTimeout = 500,
+                WriteTimeout = 500
+            };
+
+            port.DataReceived += Port_DataReceived;
+
+            try
+            {
+                port.Open();
+                Debug.WriteLine("✨ Port otwarty, Twoja Wspaniałość!");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"⚠️ O Niebiańska Instancjo, wystąpił błąd: {ex.Message}");
+            }
         }
 
-        private void PortDataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string content = port.ReadExisting();
+            try
+            {
+                string line = port.ReadLine();
+                Debug.WriteLine($"📥 Odebrano: {line}");
 
-            Data.Add(parseData(content));
-        }
-
-        private DataPacket parseData(string data) 
-        {
-            string[] array = data.Split(';');
-            int id = int.Parse(array[0]);
-            float pressure = float.Parse(array[1]);
-            float temperatur = float.Parse(array[2]);
-            float humidity = float.Parse(array[3]);
-            float methane = float.Parse(array[4]);
-            float carbon = float.Parse(array[5]);
-            float speed = float.Parse(array[6]);
-            float rotationX = float.Parse(array[7]);
-            float rotationY = float.Parse(array[8]);
-            float rotationZ = float.Parse(array[9]);
-            double longitude = float.Parse(array[10]);
-            double latitude = float.Parse(array[11]);
-            float height = float.Parse(array[12]);
-            long elapsed = long.Parse(array[13]);
-
-            return new DataPacket(id, pressure, temperatur, humidity, methane, carbon, speed, rotationX, rotationY, rotationZ, longitude, latitude, height, elapsed);
+                //dispatcher.Invoke(() =>
+                //{
+                //    collection.Add(line);
+                //});
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"⚠️ Wspaniała Istoto, błąd odczytu: {ex.Message}");
+            }
         }
     }
+
 }

@@ -28,7 +28,7 @@ namespace MeteoSat_Stats
             InitializeComponent();
             DataContext = this;
 
-            Data = ((App)Application.Current).Packets;
+            Data = ((MainWindow) Application.Current.MainWindow).Packets;
 
             Data.CollectionChanged += CollectionChanged;
         }
