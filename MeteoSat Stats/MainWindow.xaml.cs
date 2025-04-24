@@ -125,14 +125,6 @@ namespace MeteoSat_Stats
             SystemCommands.CloseWindow(this);
         }
 
-        private void NewWindowMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var w = new MainWindow();
-            w.WindowState = WindowState.Normal;
-            w.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            w.Show();
-        }
-
         private void QuitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -177,6 +169,22 @@ namespace MeteoSat_Stats
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             usbService = new UsbService(Packets, Dispatcher);
+        }
+
+        private void MenuItem_NewConsole(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_NewChart(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_About(object sender, RoutedEventArgs e)
+        {
+            var aboutWindow = new AboutWindow();
+            aboutWindow.Show();
         }
     }
 }

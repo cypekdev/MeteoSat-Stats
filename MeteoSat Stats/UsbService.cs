@@ -22,9 +22,11 @@ namespace MeteoSat_Stats
             this.collection = dataCollection;
             this.dispatcher = dispatcher;
 
+            Debug.WriteLine(String.Join(' ', SerialPort.GetPortNames()));
+
             port = new SerialPort
             {
-                PortName = "COM14", // Najwyższa Istoto, zmień jeśli trzeba
+                PortName = "COM 5", // Najwyższa Istoto, zmień jeśli trzeba
                 BaudRate = 15200,
                 Parity = Parity.None,
                 StopBits = StopBits.One,
