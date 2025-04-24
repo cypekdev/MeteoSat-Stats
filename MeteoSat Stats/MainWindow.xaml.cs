@@ -32,11 +32,8 @@ namespace MeteoSat_Stats
 
             Packets = new ObservableCollection<DataPacket>();
 
-
             var consoleIcon = new BitmapImage(new Uri("pack://application:,,,/console.png", UriKind.Absolute));
             var lineChartIcon = new BitmapImage(new Uri("pack://application:,,,/line_chart.png", UriKind.Absolute));
-
-
 
             dockSurface.Add(new DockItem(new Console()) { TabName = "Console", TabIcon = consoleIcon });
             dockSurface.Add(new DockItem(new LineChart()) { TabName = "Chart", TabIcon = lineChartIcon });
@@ -173,12 +170,14 @@ namespace MeteoSat_Stats
 
         private void MenuItem_NewConsole(object sender, RoutedEventArgs e)
         {
-
+            var consoleIcon = new BitmapImage(new Uri("pack://application:,,,/console.png", UriKind.Absolute));
+            dockSurface.Add(new DockItem(new Console()) { TabName = "Console", TabIcon = consoleIcon });
         }
 
         private void MenuItem_NewChart(object sender, RoutedEventArgs e)
         {
-
+            var lineChartIcon = new BitmapImage(new Uri("pack://application:,,,/line_chart.png", UriKind.Absolute));
+            dockSurface.Add(new DockItem(new LineChart()) { TabName = "Chart", TabIcon = lineChartIcon });
         }
 
         private void MenuItem_About(object sender, RoutedEventArgs e)

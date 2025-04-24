@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:MeteoSat_Stats"
         mc:Ignorable="d"
         Icon="/information.png"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
         Title="About" Height="250" Width="400">
     <StackPanel VerticalAlignment="Center">
         <TextBlock FontSize="24" TextAlignment="Center" HorizontalAlignment="Center">Created by Cyprian Moj</TextBlock>

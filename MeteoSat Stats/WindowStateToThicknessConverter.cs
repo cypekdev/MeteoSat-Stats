@@ -21,7 +21,7 @@ namespace MeteoSat_Stats
             else
             {
                 // left, right and bottom borders are still drawn by the system
-                return new Thickness(0, 1, 0, 0);
+                return new Thickness(0);
             }
         }
 

@@ -11,7 +11,7 @@
 
         <SolidColorBrush x:Key="TitleBarBackground" Color="#F3F3F3" />
         <sys:Double x:Key="TitleBarHeight">30</sys:Double>
-        <sys:Double x:Key="TitleBarButtonWidth">36</sys:Double>
+        <sys:Double x:Key="TitleBarButtonWidth">46</sys:Double>
         <sys:Double x:Key="TitleBarButtonHeight">30</sys:Double>
 
         <SolidColorBrush x:Key="TitleBarButtonBackground" Color="Transparent" />
@@ -41,8 +41,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border
-                                x:Name="border"
+                        <Border x:Name="border"
                                 Background="{TemplateBinding Background}"
                                 BorderThickness="0"
                                 SnapsToDevicePixels="True">
@@ -69,8 +68,7 @@
             </Setter>
         </Style>
 
-        <Style
-                x:Key="TitleBarCloseButtonStyle"
+        <Style  x:Key="TitleBarCloseButtonStyle"
                 BasedOn="{StaticResource TitleBarButtonStyle}"
                 TargetType="Button">
             <Setter Property="Background" Value="{StaticResource TitleBarCloseButtonBackground}" />
@@ -78,18 +76,16 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border
-                    x:Name="border"
-                    Background="{TemplateBinding Background}"
-                    BorderThickness="0"
-                    SnapsToDevicePixels="True">
-                            <ContentPresenter
-                        x:Name="contentPresenter"
-                        Margin="0"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Focusable="False"
-                        RecognizesAccessKey="True" />
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="0"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter   x:Name="contentPresenter"
+                                                Margin="0"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Focusable="False"
+                                                RecognizesAccessKey="True" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">

@@ -13,13 +13,14 @@
         Title="MeteoSat Stats" 
         Height="450" 
         Width="800" 
+        MinWidth="370"
+        MinHeight="250"
         Icon="/meteosat2.png">
 
     <WindowChrome.WindowChrome>
         <WindowChrome
             CornerRadius="{x:Static SystemParameters.WindowCornerRadius}"
             GlassFrameThickness="1,0,1,1"
-            NonClientFrameEdges="Left,Right,Bottom"
             ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
             UseAeroCaptionButtons="False">
             <WindowChrome.CaptionHeight>
@@ -43,55 +44,55 @@
         Background="{StaticResource TitleBarBackground}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" MinWidth="40" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <!--  remove or set Visibility="Collapsed" if you don't want to display an icon  -->
-            <Image
-            x:Name="icon"
-            Grid.Column="0"
-            Width="24"
-            Height="24"
-            Margin="5,0,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            MouseDown="Icon_MouseDown"
-            Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Icon}"
-            WindowChrome.IsHitTestVisibleInChrome="True" />
+            <Image  x:Name="icon"
+                    Grid.Column="0"
+                    Width="24"
+                    Height="24"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MouseDown="Icon_MouseDown"
+                    Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Icon}"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
 
-            <DockPanel Grid.Column="1" HorizontalAlignment="Stretch">
-                <Menu
+            <Menu
+                Grid.Column="1"
                 VerticalAlignment="Center"
                 Background="Transparent"
                 DockPanel.Dock="Left"
                 WindowChrome.IsHitTestVisibleInChrome="True">
-                    <MenuItem Header="File">
-                        <MenuItem Header="New" InputGestureText="Ctrl+N" />
-                        <MenuItem Header="Open..." InputGestureText="Ctrl+O" />
-                        <Separator />
-                        <MenuItem Header="Save" InputGestureText="Ctrl+S" />
-                        <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
-                        <Separator />
-                        <MenuItem
+                <MenuItem Header="File">
+                    <MenuItem Header="New" InputGestureText="Ctrl+N" />
+                    <MenuItem Header="Open..." InputGestureText="Ctrl+O" />
+                    <Separator />
+                    <MenuItem Header="Save" InputGestureText="Ctrl+S" />
+                    <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
+                    <Separator />
+                    <MenuItem
                         Click="QuitMenuItem_Click"
                         Header="Quit"
                         InputGestureText="Alt+F4" />
-                    </MenuItem>
-                    <MenuItem Header="Tools">
-                        <MenuItem Header="Settings..." InputGestureText="Ctrl+," />
-                    </MenuItem>
-                    <MenuItem Header="Window">
-                        <MenuItem Click="MenuItem_NewConsole" Header="Console"/>
-                        <MenuItem Click="MenuItem_NewChart" Header="Chart" />
-                    </MenuItem>
-                    <MenuItem Click="MenuItem_About" Header="About" />
-                </Menu>
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem Header="Settings..." InputGestureText="Ctrl+," />
+                </MenuItem>
+                <MenuItem Header="Window">
+                    <MenuItem Click="MenuItem_NewConsole" Header="Console"/>
+                    <MenuItem Click="MenuItem_NewChart" Header="Chart" />
+                </MenuItem>
+                <MenuItem Click="MenuItem_About" Header="About" />
+            </Menu>
 
-                <!--  remove or set Visibility="Collapsed" if you don't want to display the window title  -->
+            <DockPanel Grid.Column="2" HorizontalAlignment="Center">
+                <Image Width="24" Height="24" Source="\crossed_vga.png" />
                 <TextBlock
                 Margin="10,0,10,0"
                 HorizontalAlignment="Center"
@@ -101,7 +102,6 @@
                 TextWrapping="NoWrap" />
 
             </DockPanel>
-
 
 
             <!--  standard system buttons (minimize, maximize/restore, close)  -->
