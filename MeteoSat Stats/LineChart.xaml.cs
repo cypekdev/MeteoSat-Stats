@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +25,16 @@ namespace MeteoSat_Stats
     public partial class LineChart : UserControl
     {
         public SeriesCollection Series { get; set; }
+        public ObservableCollection<DataPacket> Data { get; set; }
+
         public LineChart()
         {
             InitializeComponent();
             DataContext = this;
+
+            Data = ((MainWindow)Application.Current.MainWindow).Packets;
+
+            Data.CollectionChanged += Data_CollectionChanged;
 
             Series = new SeriesCollection
             { 
@@ -68,6 +75,15 @@ namespace MeteoSat_Stats
                     PointGeometrySize = 15
                 }
             };
+        }
+
+        private void Data_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //Series.Clear();
+
+
+
+
         }
     }
 }

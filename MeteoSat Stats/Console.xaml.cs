@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace MeteoSat_Stats
     /// </summary>
     public partial class Console : UserControl
     {
-        private ObservableCollection<DataPacket> Data { get; set; }
+        public ObservableCollection<DataPacket> Data { get; set; }
 
         public Console()
         {
@@ -40,12 +41,25 @@ namespace MeteoSat_Stats
             {
                 textContent += (packet.ToString() + '\n');
             }
-            ConsoleOutput.Text = textContent;
+            //ConsoleOutput.Text = textContent;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Data.Add(new DataPacket(1,1,1,1,1,1,1,1,1,1,1,1,1,1));
         }
+
+        private void ConsoleOutput_Loaded(object sender, RoutedEventArgs e)
+        {
+            // automatyczne przewijanie na dół
+            ((INotifyCollectionChanged)ConsoleOutput.Items).CollectionChanged += (s, ev) =>
+            {
+                if (ConsoleOutput.Items.Count > 0)
+                {
+                    ConsoleOutput.ScrollIntoView(ConsoleOutput.Items[ConsoleOutput.Items.Count - 1]);
+                }
+            };
+        }
+
     }
 }

@@ -7,18 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="26"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="50"/>
-        </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Row="0" Grid.ColumnSpan="2">
-            <TextBlock x:Name="ConsoleOutput"></TextBlock>
-        </ScrollViewer>
-        <TextBox Grid.Row="1" VerticalContentAlignment="Center"/>
-        <Button Click="Button_Click" Grid.Row="1" Grid.Column="1" Content="Send"/>
+        <ListView   x:Name="ConsoleOutput"
+                    Background="Transparent"
+                    Margin="1"
+                    BorderThickness="0"
+                    Foreground="Black"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    Loaded="ConsoleOutput_Loaded"
+                    ItemsSource="{Binding Data}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" 
+                       TextWrapping="Wrap" 
+                       Foreground="Black"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>
